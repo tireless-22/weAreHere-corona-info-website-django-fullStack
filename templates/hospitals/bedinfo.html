@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    {% csrf_token %}
+    <body>
+        <h1>Beds info</h1>
+    </body>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Hospital name</th>
+                    <th>Address</th>
+                    <th>Oxygen beds</th>
+                    <th>ICU beds</th>
+                    <th>Normal beds</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for w in obj %}
+    
+                <tr>
+                    <td>{{w.name}}</td>
+                    <td>{{w.address}}</td>
+                    <td>{{w.total_o2_beds}}</td>
+                    <td>{{w.total_icu_beds}}</td>
+                    <td>{{w.total_normal_beds}}</td>
+                </tr>
+            
+    {% endfor %}
+</tbody>
+</table>
+</div>
+    <div>
+        
+        
+        <p data-toggle="collapse" data-target="#demo">{{w.name}}<br></p>
+        <div id="demo" class="collapse">
+            {{w.total_icu_beds}}<br>
+            {{w.total_o2_beds}}<br>
+            {{w.total_normal_beds}}<br>
+          </div>
+
+          {{w.name}}
+          {{w.total_icu_beds}}
+          {{w.total_o2_beds}}
+          {{w.total_normal_beds}}
+          <br><br>
+          
+    </div>
+  
+    
+{% endblock %}

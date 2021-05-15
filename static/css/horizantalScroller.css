@@ -1,0 +1,39 @@
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+.carousel {
+
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 22%;
+  height: 150px;
+  margin-right: 10px;
+  background: #fffc00;
+  border-radius: 5px;
+  counter-increment: gallery-cell;
+}
+
+ @media screen and (max-width:1080px) {
+	.carousel-cell {
+  width: 33%;
+  height: 150px;
+  margin-right: 10px;
+  background: #fffc00;
+  border-radius: 5px;
+  counter-increment: gallery-cell;
+}
+	}
+
+@media screen and (max-width:720px) {
+	.carousel-cell {
+  width: 50%;
+  height: 150px;
+  margin-right: 10px;
+  background: #fffc00;
+  border-radius: 5px;
+  counter-increment: gallery-cell;
+}
+}

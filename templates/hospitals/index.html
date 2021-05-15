@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br>
+{% csrf_token %}
+{% for key,value in w.items %}
+
+<div>
+<center><h4>{{key}}</h4></center>
+<div class="carousel"
+  data-flickity='{ "groupCells": true }'>
+  {% for j in value %}
+		<div class="carousel-cell">
+    <center><h6>{{j}}</h6></center>
+		<a href="{% url 'services' id1=key id2=j %}" >
+    <img src="https://source.unsplash.com/random" style="width:100%;height:300px;">
+    </a>   
+		</div> 
+    {% endfor %}
+</div>
+<br>
+</div>
+{% endfor %}
+
+{% endblock %}
+
