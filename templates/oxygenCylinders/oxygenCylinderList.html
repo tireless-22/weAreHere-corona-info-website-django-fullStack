@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br>
+
+{% csrf_token %}
+<table class="content-table">
+  <thead>
+    <tr>
+    <th>Name of the Dealer</th>
+    <th>{{data.0}}</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>Contact Number </td>
+    <td>{{data.1}}</td>
+  </tr>     
+  </tbody>
+</table>
+
+</body>
+</html>
+{% endblock %}

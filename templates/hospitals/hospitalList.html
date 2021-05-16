@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br>
+
+{% csrf_token %}
+<table class="content-table">
+  <thead>
+    <tr>
+    <th>Hospital name</th>
+    <th>{{data.0}}</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>ICU beds</td>
+    <td>{{data.1}}</td>
+  </tr>
+
+    <tr>
+    <td>ICU Ventilator beds</td>
+    <td>{{data.2}}</td>
+  </tr>
+    <tr>
+    <td>Oxygen Beds</td>
+    <td>{{data.3}}</td>
+  </tr>
+  <tr>
+    <td>Normal Beds</td>
+    <td>{{data.4}}</td>
+  </tr>
+  <tr>
+    <td>Contact info</td>
+    <td>{{data.5}}</td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
+{% endblock %}
