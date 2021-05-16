@@ -61,23 +61,10 @@ def results(request):
 
 def services(request,id1,id2):
 	states = State.objects.filter(state=id1)
-	# print(type(states))
-	# here states is an object
-	# we can not use them directly it is will print like <QuerySet [<State: State object (1)>]>
-	# and this object object is of type class like <class 'django.db.models.query.QuerySet'>
-	# y beacause we are filtering  this from the model class 
-
-	# print(states[0])
 	dist = District.objects.filter(district=id2)
-	#print(dist[0].district)
-
-
 	lst = []
 	lst.append(states[0].state)
 	lst.append(dist[0].district)
-	print(lst)
-
-
 
 	hosp = Hospital.objects.filter(district_id=dist[0])
 	ambu = Ambulances.objects.filter(district_id=dist[0])
@@ -127,11 +114,76 @@ def services(request,id1,id2):
 		}
 
 		
-	return render(request,'services.html',services)    
+	return render(request,'services.html',services) 
+
+
+
+# *********************************************************
+
+def all_hospitals_list(request,st,dt):
+	states = State.objects.filter(state=st)
+	dist = District.objects.filter(district=dt)
+	hosp = Hospital.objects.filter(district_id=dist[0])
+	data = []
+	data2=[]
+	for i in hosp:
+		data=[]
+		data.append(i.name_of_hospital)
+		data.append(i.total_icu_beds)
+		data.append(i.total_icu_ventilator_beds)
+		data.append(i.total_o2_beds)
+		data.append(i.total_normal_beds)
+		data.append(i.contact_number_of_the_hospital)	
+		data2.append(data)
+	return render(request,'hospitals/allHospitalsList.html',{'data2':data2})
+
+def all_ambulance_list(request,st,dt):
+	states = State.objects.filter(state=st)
+	dist = District.objects.filter(district=dt)
+	ambs = Ambulances.objects.filter(district_id=dist[0])
+	data = []
+	data2=[]
+	for i in ambs:
+		data=[]
+		data.append(i.vehicle_no_of_the_ambulance)
+		data.append(i.name_of_the_ambulance_driver)
+		data.append(i.contact_no_of_ambulance_driver)	
+		data2.append(data)
+	return render(request,'ambulances/allAmbulancesList.html',{'data2':data2})
+
+
+def all_oxygen_cylinders_list(request,st,dt):
+	states = State.objects.filter(state=st)
+	dist = District.objects.filter(district=dt)
+	oxys = oxygen_cylinders.objects.filter(district_id=dist[0])
+	data = []
+	data2=[]
+	for i in oxys:
+		data=[]
+		data.append(i.name_of_the_oxygen_dealer)
+		data.append(i.contact_no_of_the_oxygen_dealer)	
+		data2.append(data)
+	return render(request,'oxygenCylinders/allOxygenCylinderList.html',{'data2':data2})
+
+
+def all_medical_sotres_list(request,st,dt):
+	states = State.objects.filter(state=st)
+	dist = District.objects.filter(district=dt)
+	med = Medicines.objects.filter(district_id=dist[0])
+	data = []
+	data2=[]
+	for i in med:
+		data=[]
+		data.append(i.name_of_the_medical_store)
+		data.append(i.name_of_the_shop_owner)
+		data.append(i.contact_no_of_the_medical_shop_owner)
+		data2.append(data)
+	return render(request,'medicalStores/allMedicalStoresList.html',{'data2':data2})			
 
 
 
 
+# ****************************************************************
 
 def hospital_list(request,name1,st,dt):
 	states = State.objects.filter(state=st)

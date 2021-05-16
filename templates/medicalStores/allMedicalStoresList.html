@@ -1,0 +1,32 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+ <br> <br>
+    {% csrf_token %}
+<table class="content-table">
+  <thead>
+    <tr>
+      <th>Name Of The Medical Store</th>
+      <th>Name Of The Shop Owner</th>
+      <th>Contact Number</th>
+
+    </tr>
+  </thead>
+
+
+  <tbody>
+  {% for i in data2 %}
+    <tr>
+      <td>{{i.0}}</td>
+      <td>{{i.1}}</td>
+      <td>{{i.2}}</td>
+      
+    </tr>  
+  {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html> 
+{% endblock %}

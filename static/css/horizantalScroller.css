@@ -2,6 +2,27 @@
 
 body { font-family: sans-serif; }
 
+.see{
+  float: right;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.headings{
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+
 .carousel {
 
   background: #EEE;
@@ -15,6 +36,8 @@ body { font-family: sans-serif; }
   border-radius: 5px;
   counter-increment: gallery-cell;
 }
+
+
 
  @media screen and (max-width:1080px) {
 	.carousel-cell {
