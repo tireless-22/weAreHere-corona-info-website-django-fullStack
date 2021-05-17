@@ -1,9 +1,8 @@
-{% extends 'base1.html' %}
-
-{% block content %}
- <br> <br>
-
+{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'css/horizantalTable.css'%}"/>
     {% csrf_token %}
+
+
 <table class="content-table">
   <thead>
     <tr>
@@ -19,7 +18,10 @@
     <tr>
       <td>{{i.0}}</td>
       <td>{{i.1}}</td>
-     
+      <td>{{i.2}}</td>
+      <td>{{i.3}}</td>
+      <td>{{i.4}}</td>
+   
     </tr>  
   {% endfor %}
   </tbody>
@@ -27,4 +29,3 @@
 
 </body>
 </html> 
-{% endblock %}

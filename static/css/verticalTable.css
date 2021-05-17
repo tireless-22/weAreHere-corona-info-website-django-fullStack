@@ -26,7 +26,7 @@
 }
 
 .content-table tbody tr:nth-of-type(even) {
-    background-color: #666;
+    background-color: #999;
     text-align: center;
 }
 

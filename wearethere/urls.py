@@ -1,3 +1,5 @@
+
+
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
@@ -25,16 +27,18 @@ urlpatterns = [
     path('admin/', admin.site.urls),
    
     
-    url(r'services/(?P<id1>[A-Za-z- ]+)/(?P<id2>[A-Za-z- ]+)$',views.services, name='services'),
+    url(r'services/(?P<id1>[A-Za-z0-9- ]+)/(?P<id2>[A-Za-z0-9- ]+)$',views.services, name='services'),
 
-    url(r'hospital_list/(?P<name1>[A-Za-z]+)/(?P<st>[A-Za-z- ]+)/(?P<dt>[A-Za-z- ]+)$', views.hospital_list,name='hosp_list'),
-    url(r'ambulance_list/(?P<name1>[A-Za-z]+)/(?P<st>[A-Za-z- ]+)/(?P<dt>[A-Za-z- ]+)$', views.ambulance_list,name='ambulance_list'),
-    url(r'oxygen_cylinder_list/(?P<name1>[A-Za-z]+)/(?P<st>[A-Za-z- ]+)/(?P<dt>[A-Za-z- ]+)$', views.oxygen_cylinder_list,name='oxygen_cylinder_list'),
-    url(r'medical_store_lisst/(?P<name1>[A-Za-z]+)/(?P<st>[A-Za-z- ]+)/(?P<dt>[A-Za-z- ]+)$', views.medical_store_list,name='medical_store_list'),
+    url(r'hospital_list/(?P<name1>[A-Za-z0-9- ]+)/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.hospital_list,name='hosp_list'),
+    url(r'ambulance_list/(?P<name1>[A-Za-z0-9- ]+)/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.ambulance_list,name='ambulance_list'),
+    url(r'oxygen_cylinder_list/(?P<name1>[A-Za-z0-9- ]+)/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.oxygen_cylinder_list,name='oxygen_cylinder_list'),
+    url(r'medical_store_lisst/(?P<name1>[A-Za-z0-9- ]+)/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.medical_store_list,name='medical_store_list'),
 
 
-    url(r'all_hospitals_list/(?P<st>[A-Za-z- ]+)/(?P<dt>[A-Za-z- ]+)$', views.all_hospitals_list,name='all_hospitals_list'),
-    url(r'all_ambulance_list/(?P<st>[A-Za-z- ]+)/(?P<dt>[A-Za-z- ]+)$', views.all_ambulance_list,name='all_ambulance_list'),
-    url(r'all_oxygen_cylinders_list/(?P<st>[A-Za-z- ]+)/(?P<dt>[A-Za-z- ]+)$', views.all_oxygen_cylinders_list,name='all_oxygen_cylinders_list'),
-    url(r'all_medical_sotres_list/(?P<st>[A-Za-z- ]+)/(?P<dt>[A-Za-z- ]+)$', views.all_medical_sotres_list,name='all_medical_sotres_list'),
+    url(r'all_hospitals_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_hospitals_list,name='all_hospitals_list'),
+    url(r'all_ambulance_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_ambulance_list,name='all_ambulance_list'),
+    url(r'all_oxygen_cylinders_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_oxygen_cylinders_list,name='all_oxygen_cylinders_list'),
+    url(r'all_medical_sotres_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_medical_sotres_list,name='all_medical_sotres_list'),
 ]
+
+

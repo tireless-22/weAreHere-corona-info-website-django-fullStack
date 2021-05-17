@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-<br><br>
+<br><br><br>
 {% csrf_token %}
 
+<div>
+ <p class="headings">Hospitals</p>
+  <a target="blank" href="{% url 'all_hospitals_list' st=lst.0 dt=lst.1 %}"> 
+  <p class="see">SeeAll</p></a>
+  
+  <div>
+  
 
-<p class="headings">Hospitals</p>
-  <a href="{% url 'all_hospitals_list' st=lst.0 dt=lst.1 %}"> 
-  <p class="see">See All</p></a>
- 
-<br><br><br>
 
+</div>
 <div class="carousel"
   data-flickity='{ "groupCells": true }'>
   {% for i in hosp_list %}
@@ -20,14 +23,14 @@
     </a>   
 		</div> 
     {% endfor %}
+</div><br>
+
 </div>
-
-
 <p class="headings">Ambulances</p>
-<a href="{% url 'all_ambulance_list' st=lst.0 dt=lst.1 %}"> 
-  <p class="see">See All</p></a>
+<a target="blank" href="{% url 'all_ambulance_list' st=lst.0 dt=lst.1 %}"> 
+  <p class="see">SeeAll</p></a>
  
-<br><br><br>
+<br><br>
 
   
 <div class="carousel"
@@ -40,13 +43,13 @@
     </a>   
 		</div> 
     {% endfor %}
-</div>
+</div><br>
 
 <p class="headings">Oxygen Cylinders</p>
-<a href="{% url 'all_oxygen_cylinders_list' st=lst.0 dt=lst.1 %}"> 
-  <p class="see">See All</p></a>
+<a target="blank" href="{% url 'all_oxygen_cylinders_list' st=lst.0 dt=lst.1 %}"> 
+  <p class="see">SeeAll</p></a>
  
-<br><br><br>
+<br><br>
 
 
 <div class="carousel"
@@ -60,12 +63,12 @@
 		</div> 
     {% endfor %}
 </div>
-
+<br>
 <p class="headings">Medical Stores</p>
-<a href="{% url 'all_medical_sotres_list' st=lst.0 dt=lst.1 %}"> 
-  <p class="see">See All</p></a>
+<a target="blank" href="{% url 'all_medical_sotres_list' st=lst.0 dt=lst.1 %}"> 
+  <p class="see">SeeAll</p></a>
  
-<br><br><br>
+<br><br>
 
 
 

@@ -28,17 +28,26 @@ class Ambulances(models.Model):
     vehicle_no_of_the_ambulance = models.CharField(max_length=30,null=False)
     name_of_the_ambulance_driver = models.CharField(max_length=30,null=False)
     contact_no_of_ambulance_driver=models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    pincode = models.IntegerField(null=False)
+    address = models.CharField(max_length=100, null=False)
+    gmap_link = models.CharField(max_length=2048, null=False)
 
 class oxygen_cylinders(models.Model):
     district = models.ForeignKey(District,on_delete=CASCADE)
     name_of_the_oxygen_dealer= models.CharField(max_length=30,null=False)
     contact_no_of_the_oxygen_dealer=models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    pincode = models.IntegerField(null=False)
+    address = models.CharField(max_length=100, null=False)
+    gmap_link = models.CharField(max_length=2048, null=False)
 
 class Medicines(models.Model):
     district = models.ForeignKey(District,on_delete=CASCADE)
     name_of_the_medical_store= models.CharField(max_length=30,null=False)
     name_of_the_shop_owner= models.CharField(max_length=30,null=False)
     contact_no_of_the_medical_shop_owner=models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    pincode = models.IntegerField(null=False)
+    address = models.CharField(max_length=100, null=False)
+    gmap_link = models.CharField(max_length=2048, null=False)
 
 class History(models.Model):
     hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE)

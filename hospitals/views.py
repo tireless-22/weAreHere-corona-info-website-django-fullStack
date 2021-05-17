@@ -133,7 +133,12 @@ def all_hospitals_list(request,st,dt):
 		data.append(i.total_icu_ventilator_beds)
 		data.append(i.total_o2_beds)
 		data.append(i.total_normal_beds)
-		data.append(i.contact_number_of_the_hospital)	
+		data.append(i.contact_number_of_the_hospital)
+		data.append(i.pincode)
+		data.append(i.address)
+		data.append(i.gmap_link)
+
+
 		data2.append(data)
 	return render(request,'hospitals/allHospitalsList.html',{'data2':data2})
 
@@ -147,7 +152,10 @@ def all_ambulance_list(request,st,dt):
 		data=[]
 		data.append(i.vehicle_no_of_the_ambulance)
 		data.append(i.name_of_the_ambulance_driver)
-		data.append(i.contact_no_of_ambulance_driver)	
+		data.append(i.contact_no_of_ambulance_driver)
+		data.append(i.pincode)
+		data.append(i.address)
+		data.append(i.gmap_link)	
 		data2.append(data)
 	return render(request,'ambulances/allAmbulancesList.html',{'data2':data2})
 
@@ -161,7 +169,10 @@ def all_oxygen_cylinders_list(request,st,dt):
 	for i in oxys:
 		data=[]
 		data.append(i.name_of_the_oxygen_dealer)
-		data.append(i.contact_no_of_the_oxygen_dealer)	
+		data.append(i.contact_no_of_the_oxygen_dealer)
+		data.append(i.pincode)
+		data.append(i.address)
+		data.append(i.gmap_link)	
 		data2.append(data)
 	return render(request,'oxygenCylinders/allOxygenCylinderList.html',{'data2':data2})
 
@@ -177,6 +188,9 @@ def all_medical_sotres_list(request,st,dt):
 		data.append(i.name_of_the_medical_store)
 		data.append(i.name_of_the_shop_owner)
 		data.append(i.contact_no_of_the_medical_shop_owner)
+		data.append(i.pincode)
+		data.append(i.address)
+		data.append(i.gmap_link)
 		data2.append(data)
 	return render(request,'medicalStores/allMedicalStoresList.html',{'data2':data2})			
 
@@ -197,7 +211,10 @@ def hospital_list(request,name1,st,dt):
 		 data.append(i.total_icu_ventilator_beds)
 		 data.append(i.total_o2_beds)
 		 data.append(i.total_normal_beds)
-		 data.append(i.contact_number_of_the_hospital)
+		 data.append(i.contact_number_of_the_hospital)		
+			data.append(i.pincode)
+			data.append(i.address)
+			data.append(i.gmap_link)
 
 	return render(request,'hospitals/hospitalList.html',{'data':data})
 
@@ -214,7 +231,9 @@ def ambulance_list(request,name1,st,dt):
 		 data.append(i.name_of_the_ambulance_driver)
 		 data.append(i.vehicle_no_of_the_ambulance)
 		 data.append(i.contact_no_of_ambulance_driver)
-
+			data.append(i.pincode)
+			data.append(i.address)
+			data.append(i.gmap_link)
 
 	return render(request,'ambulances/ambulanceList.html',{'data':data})
 
@@ -228,6 +247,9 @@ def oxygen_cylinder_list(request,name1,st,dt):
 	for i in oxygen:
 		 data.append(i.name_of_the_oxygen_dealer)
 		 data.append(i.contact_no_of_the_oxygen_dealer)
+			data.append(i.pincode)
+			data.append(i.address)
+			data.append(i.gmap_link)
 
 
 
@@ -245,6 +267,8 @@ def medical_store_list(request,name1,st,dt):
 		 data.append(i.name_of_the_medical_store)
 		 data.append(i.name_of_the_shop_owner)
 		 data.append(i.contact_no_of_the_medical_shop_owner)
-
+			data.append(i.pincode)
+			data.append(i.address)
+			data.append(i.gmap_link)
 
 	return render(request,'medicalStores/medicalStoreList.html',{'data':data})	
