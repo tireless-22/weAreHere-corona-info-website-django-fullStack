@@ -20,24 +20,24 @@ class HospitalSerializer(serializers.ModelSerializer):
 class AmbulanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ambulances
-        fields = ['district','vehicle_no_of_the_ambulance','name_of_the_ambulance_driver','contact_no_of_ambulance_driver']
+        fields = ['district','vehicle_no_of_the_ambulance','name_of_the_ambulance_driver','contact_no_of_ambulance_driver','address','gmap_link','pincode']
 
 class OxygenSerializer(serializers.ModelSerializer):
     class Meta:
         model = oxygen_cylinders
-        fields = ['district','name_of_the_oxygen_dealer','contact_no_of_the_oxygen_dealer']
+        fields = ['district','name_of_the_oxygen_dealer','contact_no_of_the_oxygen_dealer','address','gmap_link','pincode']
 
 class MedicineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medicines
-        fields = ['district','name_of_the_medical_store','name_of_the_shop_owner','contact_no_of_the_medical_shop_owner']
+        fields = ['district','name_of_the_medical_store','name_of_the_shop_owner','contact_no_of_the_medical_shop_owner','address','gmap_link','pincode']
 
 class HistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History  
-        fields = ['hospital','last_updated','icu_beds','o2_beds','normal_beds']
+        fields = ['hospital','last_updated','icu_beds','o2_beds','normal_beds','address','gmap_link','pincode']
 
 class StaffSerializer(serializers.ModelSerializer):
     class Meta:
         model = StaffData
-        fields = ['hospital','ambulance','oxygen','designation','contact']
+        fields = ['hospital','ambulance','oxygen','designation','contact','address','gmap_link','pincode']
