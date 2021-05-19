@@ -81,9 +81,3 @@ class Reviews_medical_store(models.Model):
     username = models.CharField(max_length=20)
     rating = models.IntegerField(validators=[MaxValueValidator(5)])
     feedback = models.TextField(max_length=250)
-
-class Reviews_oxygen_cylinder(models.Model):
-    oxygen_cylinder = models.ForeignKey(oxygen_cylinders,on_delete=CASCADE)
-    username = models.CharField(max_length=20)
-    rating = models.IntegerField(validators=[MaxValueValidator(5)])
-    feedback = models.TextField(max_length=250)

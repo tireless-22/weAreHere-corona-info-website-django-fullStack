@@ -10,20 +10,7 @@
 <body>
 	<div id="navlist">
 		<a href="#">WeAreThere</a>
-		<div class="search">
-			
-			<form method=POST action="{% url 'search' %}">
-			{% csrf_token %}
-				<input type="text"
-					placeholder=" Search Your Place"
-					name="searched">
-					<button type="submit">
-						<i class="fa fa-search"
-										style="font-size: 18px;">
-						</i>
-					</button>
-			</form>
-		</div>
+		
 	</div>
 </body>
 </html>		

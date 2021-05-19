@@ -40,11 +40,9 @@ urlpatterns = [
     url(r'all_ambulance_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_ambulance_list,name='all_ambulance_list'),
     url(r'all_oxygen_cylinders_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_oxygen_cylinders_list,name='all_oxygen_cylinders_list'),
     url(r'all_medical_sotres_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_medical_sotres_list,name='all_medical_sotres_list'),
+    path('ddl/', views.ddl, name='ddl'),
+   
 
-    path('search', views.search, name='search'),
-    path('', include('social_django.urls', namespace='social')),
-    url(r'^logout$', LogoutView.as_view(),  name='logout'),
-    #path('add/',views.add)
 ]
 
 

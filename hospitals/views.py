@@ -5,13 +5,7 @@ from .models import *
 from rest_framework import viewsets
 from .serializers import *
 
-from django.contrib.auth import logout
 
-def logout_view(request):
-    logout(request)
-    return 'Yayy!!'
-
-    
 
 
 class StateViewSet(viewsets.ModelViewSet):
@@ -59,8 +53,6 @@ def index(request):
  return render(request,'index.html',{'w':w})
 
 
-def results(request):
-    pass
 
 
 
@@ -280,23 +272,6 @@ def oxygen_cylinder_list(request,name1,st,dt):
  states = State.objects.filter(state=st)
  dist = District.objects.filter(district=dt)
  oxygen = oxygen_cylinders.objects.filter(district_id=dist[0],name_of_the_oxygen_dealer=name1)
- rating = Reviews_oxygen_cylinder.objects.filter(oxygen_cylinder_id=oxygen[0])
- reviews = []
- if rating:
-  for i in rating:
-   w = []
-   w.append(i.username)
-   w.append(range(i.rating))
-   w.append(i.feedback)
-
-   reviews.append(w)
- else:
-   w = []
-   w.append('Anonymous')
-   w.append(range(5))
-   w.append('Good response')
-
-   reviews.append(w)
  data = []
 
  for i in oxygen:
@@ -305,7 +280,7 @@ def oxygen_cylinder_list(request,name1,st,dt):
    data.append(i.pincode)
    data.append(i.address)
    data.append(i.gmap_link)
- return render(request,'oxygenCylinders/oxygenCylinderList.html',{'data':data,'reviews':reviews})	
+ return render(request,'oxygenCylinders/oxygenCylinderList.html',{'data':data})	
 
 
 
@@ -344,16 +319,9 @@ def medical_store_list(request,name1,st,dt):
 
 
 
-def search(request):
-	if request.method == "POST":
-		searched = request.POST['searched']
-		districts = District.objects.filter(name__contains=searched)
-	
-		return render(request, 
-		'search_district.html', 
-		{'searched':searched,
-		'districts':districts})
-	else:
-		return render(request, 
-		'search_district.html', 
-		{})
+def ddl(request):
+  stateObj=State.objects.all()
+  districtObj=District.objects.all()
+  
+
+  return render(request,'dropDown.html',{"states":stateObj,"districts":districtObj})	    
