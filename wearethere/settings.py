@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hospitals',
-    'rest_framework'
+    'rest_framework',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -86,9 +87,26 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '600962703058-7ln547le3pfrh5ccj66pq54lc21jcobj.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'i9l82zZPHB9Hs58QFoaIZFz2'
+
+
+LOGIN_URL = '/auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URL = '/index'
+LOGOUT_REDIRECT_URL = '/index'
+
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

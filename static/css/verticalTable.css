@@ -35,6 +35,7 @@
     border-bottom: 4px solid #FFFC00;
 }
 
+
 /* EVEN ROW */
 .content-table tbody tr.active-row {
     font-weight: bold;

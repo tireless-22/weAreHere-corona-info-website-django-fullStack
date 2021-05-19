@@ -3,6 +3,7 @@
 <br><br><br>
 
 {% csrf_token %}
+<div class="mapouter" align="right"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="{{data.4}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">how to add google maps to a website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
 <table class="content-table">
   <thead>
     <tr>
@@ -29,6 +30,19 @@
   </tr>  
   </tbody>
 </table>
+
+
+{% for rows in reviews %}
+{{rows.0}}
+<br>
+{% for i in rows.1 %}
+<span class="fa fa-star checked" style="color: orange"></span>
+{% endfor %}
+
+<br>
+{{rows.2}}
+{% endfor %}
+
 
 </body>
 </html>
