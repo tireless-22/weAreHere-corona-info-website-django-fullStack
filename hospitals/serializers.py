@@ -35,9 +35,9 @@ class MedicineSerializer(serializers.ModelSerializer):
 class HistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History  
-        fields = ['hospital','last_updated','icu_beds','o2_beds','normal_beds','address','gmap_link','pincode']
+        fields = ['hospital','last_updated','icu_beds','o2_beds','normal_beds']
 
 class StaffSerializer(serializers.ModelSerializer):
     class Meta:
         model = StaffData
-        fields = ['hospital','ambulance','oxygen','designation','contact','address','gmap_link','pincode']
+        fields = ['hospital','ambulance','oxygen','designation','contact']

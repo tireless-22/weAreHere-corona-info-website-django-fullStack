@@ -3,7 +3,7 @@
 <br><br><br>
 {% csrf_token %}
 {% for key,value in w.items %}
-
+{% if value %}
 <div>
 <center><h4>{{key}}</h4></center>
 <div class="carousel"
@@ -19,6 +19,7 @@
 </div>
 <br>
 </div>
+{% endif %}
 {% endfor %}
 
 {% endblock %}

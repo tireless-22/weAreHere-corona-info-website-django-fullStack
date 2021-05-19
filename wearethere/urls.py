@@ -1,10 +1,10 @@
-
-
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from hospitals import views
-
+from django.conf import settings
+from django.contrib.auth import logout
+from django.contrib.auth.views import LogoutView
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -17,6 +17,7 @@ router.register(r'medicines',views.MedicineViewSet)
 router.register(r'history',views.HistoryViewSet)
 router.register(r'staff',views.StaffViewSet)
 
+next_page = None
 urlpatterns = [
     path('api-auth/',include('rest_framework.urls',
         namespace='rest_framework')),
@@ -39,6 +40,9 @@ urlpatterns = [
     url(r'all_ambulance_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_ambulance_list,name='all_ambulance_list'),
     url(r'all_oxygen_cylinders_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_oxygen_cylinders_list,name='all_oxygen_cylinders_list'),
     url(r'all_medical_sotres_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_medical_sotres_list,name='all_medical_sotres_list'),
+    path('ddl/', views.ddl, name='ddl'),
+   
+
 ]
 
 

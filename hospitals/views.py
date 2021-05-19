@@ -6,6 +6,8 @@ from rest_framework import viewsets
 from .serializers import *
 
 
+
+
 class StateViewSet(viewsets.ModelViewSet):
     queryset = State.objects.all()
     serializer_class = StateSerializer
@@ -44,18 +46,13 @@ def index(request):
  states = State.objects.all()
  w = {}
  for i in states:
-  # print(i.state)
   w[i.state] = []
   dist = District.objects.filter(state_id=i)
-  #print(dist.district)
   for j in dist:
    w[i.state].append(j.district)
- # print(w)
  return render(request,'index.html',{'w':w})
 
 
-def results(request):
-    pass
 
 
 
@@ -65,7 +62,6 @@ def services(request,id1,id2):
  lst = []
  lst.append(states[0].state)
  lst.append(dist[0].district)
-
  hosp = Hospital.objects.filter(district_id=dist[0])
  ambu = Ambulances.objects.filter(district_id=dist[0])
  oxygen = oxygen_cylinders.objects.filter(district_id=dist[0])
@@ -197,26 +193,43 @@ def all_medical_sotres_list(request,st,dt):
 
 
 
-# ****************************************************************
+#****************************************************************
 
 def hospital_list(request,name1,st,dt):
  states = State.objects.filter(state=st)
  dist = District.objects.filter(district=dt)
  hosp = Hospital.objects.filter(district_id=dist[0],name_of_hospital=name1)
+ rating = Reviews_hospital.objects.filter(hospital_id=hosp[0])
+ reviews = []
+ if rating:
+  for i in rating:
+   w = []
+   w.append(i.username)
+   w.append(range(i.rating))
+   w.append(i.feedback)
+
+   reviews.append(w)
+ else:
+   w = []
+   w.append('Anonymous')
+   w.append(range(5))
+   w.append('Good response')
+
+   reviews.append(w)
+
+
  data = []
-
  for i in hosp:
-   data.append(i.name_of_hospital)
-   data.append(i.total_icu_beds)
-   data.append(i.total_icu_ventilator_beds)
-   data.append(i.total_o2_beds)
-   data.append(i.total_normal_beds)
-   data.append(i.contact_number_of_the_hospital)
-   data.append(i.pincode)
-   data.append(i.address)
-   data.append(i.gmap_link)		
-
- return render(request,'hospitals/hospitalList.html',{'data':data})
+  data.append(i.name_of_hospital)
+  data.append(i.total_icu_beds)
+  data.append(i.total_icu_ventilator_beds)
+  data.append(i.total_o2_beds)
+  data.append(i.total_normal_beds)
+  data.append(i.contact_number_of_the_hospital)
+  data.append(i.pincode)
+  data.append(i.address)
+  data.append(i.gmap_link)
+ return render(request,'hospitals/hospitalList.html',{'data':data,'reviews':reviews})
 
 
 
@@ -225,6 +238,23 @@ def ambulance_list(request,name1,st,dt):
  states = State.objects.filter(state=st)
  dist = District.objects.filter(district=dt)
  ambulance = Ambulances.objects.filter(district_id=dist[0],vehicle_no_of_the_ambulance=name1)
+ rating = Reviews_ambulance.objects.filter(ambulance_id=ambulance[0])
+ reviews = []
+ if rating:
+  for i in rating:
+   w = []
+   w.append(i.username)
+   w.append(range(i.rating))
+   w.append(i.feedback)
+
+   reviews.append(w)
+ else:
+   w = []
+   w.append('Anonymous')
+   w.append(range(5))
+   w.append('Good response')
+
+   reviews.append(w)
  data = []
 
  for i in ambulance:
@@ -235,7 +265,7 @@ def ambulance_list(request,name1,st,dt):
    data.append(i.address)
    data.append(i.gmap_link)
 
- return render(request,'ambulances/ambulanceList.html',{'data':data})
+ return render(request,'ambulances/ambulanceList.html',{'data':data,'reviews':reviews})
 
 
 def oxygen_cylinder_list(request,name1,st,dt):
@@ -250,9 +280,6 @@ def oxygen_cylinder_list(request,name1,st,dt):
    data.append(i.pincode)
    data.append(i.address)
    data.append(i.gmap_link)
-
-
-
  return render(request,'oxygenCylinders/oxygenCylinderList.html',{'data':data})	
 
 
@@ -261,8 +288,25 @@ def medical_store_list(request,name1,st,dt):
  states = State.objects.filter(state=st)
  dist = District.objects.filter(district=dt)
  medicine = Medicines.objects.filter(district_id=dist[0],name_of_the_medical_store=name1)
- data = []
+ rating = Reviews_medical_store.objects.filter(medical_store_id=medicine[0])
+ reviews = []
+ if rating:
+  for i in rating:
+   w = []
+   w.append(i.username)
+   w.append(range(i.rating))
+   w.append(i.feedback)
 
+   reviews.append(w)
+ else:
+   w = []
+   w.append('Anonymous')
+   w.append(range(5))
+   w.append('Good response')
+
+   reviews.append(w)
+ data = []
+ 
  for i in medicine:
    data.append(i.name_of_the_medical_store)
    data.append(i.name_of_the_shop_owner)
@@ -271,4 +315,13 @@ def medical_store_list(request,name1,st,dt):
    data.append(i.address)
    data.append(i.gmap_link)
 
- return render(request,'medicalStores/medicalStoreList.html',{'data':data})	
+ return render(request,'medicalStores/medicalStoreList.html',{'data':data,'reviews':reviews})	
+
+
+
+def ddl(request):
+  stateObj=State.objects.all()
+  districtObj=District.objects.all()
+  
+
+  return render(request,'dropDown.html',{"states":stateObj,"districts":districtObj})	    
