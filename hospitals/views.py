@@ -120,6 +120,7 @@ def all_hospitals_list(request,st,dt):
  states = State.objects.filter(state=st)
  dist = District.objects.filter(district=dt)
  hosp = Hospital.objects.filter(district_id=dist[0])
+ print(hosp)
  data = []
  data2=[]
  for i in hosp:
@@ -133,6 +134,8 @@ def all_hospitals_list(request,st,dt):
   data.append(i.pincode)
   data.append(i.address)
   data.append(i.gmap_link)
+  print(data)
+  
 
 
   data2.append(data)
@@ -238,6 +241,7 @@ def ambulance_list(request,name1,st,dt):
  states = State.objects.filter(state=st)
  dist = District.objects.filter(district=dt)
  ambulance = Ambulances.objects.filter(district_id=dist[0],vehicle_no_of_the_ambulance=name1)
+ print(ambulance)
  rating = Reviews_ambulance.objects.filter(ambulance_id=ambulance[0])
  reviews = []
  if rating:
@@ -264,7 +268,7 @@ def ambulance_list(request,name1,st,dt):
    data.append(i.pincode)
    data.append(i.address)
    data.append(i.gmap_link)
-
+ print(data) 
  return render(request,'ambulances/ambulanceList.html',{'data':data,'reviews':reviews})
 
 
@@ -272,6 +276,7 @@ def oxygen_cylinder_list(request,name1,st,dt):
  states = State.objects.filter(state=st)
  dist = District.objects.filter(district=dt)
  oxygen = oxygen_cylinders.objects.filter(district_id=dist[0],name_of_the_oxygen_dealer=name1)
+ print(oxygen)
  data = []
 
  for i in oxygen:
@@ -314,14 +319,51 @@ def medical_store_list(request,name1,st,dt):
    data.append(i.pincode)
    data.append(i.address)
    data.append(i.gmap_link)
+ 
 
  return render(request,'medicalStores/medicalStoreList.html',{'data':data,'reviews':reviews})	
+
+
+
+# def ddl(request):
+#   stateObj=State.objects.all()
+#   districtObj=District.objects.all()
+#   data=[]
+#   for i in districtObj:
+#     data.append(i.state)
+#   print(data)  
+
+
+
+  
+
+#   return render(request,'dropDown.html',{"states":stateObj,"districts":districtObj})
+  
 
 
 
 def ddl(request):
   stateObj=State.objects.all()
   districtObj=District.objects.all()
-  
+  data=[]
+  data1=[]
+  data2=[]
 
-  return render(request,'dropDown.html',{"states":stateObj,"districts":districtObj})	    
+
+  for i in districtObj:
+    data=[]
+    data.append(i.state)
+    data.append(i.district)
+    data1.append(data)
+  print(data1)
+
+  for i in stateObj:
+    data2.append(i.state) 
+
+  context={
+    "stateObj":stateObj,
+    "data1":data1,
+    "data2":data2,
+  }
+
+  return render(request,'dropDown.html',context)  

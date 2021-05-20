@@ -1,53 +1,68 @@
 <!DOCTYPE html>
 <h4>drop down list</h4>
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" integrity="sha512-arEjGlJIdHpZzNfZD2IidQjDZ+QY9r4VFJIm2M/DhXLjvvPyXFj+cIotmo0DLgvL3/DOlIaEDwzEiClEPQaAFQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js" integrity="sha512-m7x59G4+NdYoUUKUscYq2qKkineVwmjXA/7WfXm8pukxYiFavrh9uFImpPtbmZGAnHR0rouVWWk+dgcHNurQ5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
   $(document).ready(function()
   {
     var $select1=$('#select1'),
         $select2=$('#select2'),
-      
-
-    
-
         $options=$select2.find('option');
- 
-        
+   
         $select1.on('change',function(){
-          console.log("hi")
-          console.log($options)
-          console.log()
-
-
-
-          $select2.html($options.filter('[value="'+this.value+'"]'));
           
+          $select2.html($options.filter('[value="'+this.value+'"]'));
+  
         }).trigger('change');
   }
   );
-  {% comment %} .filter('[value="'+this.value+'"]') {% endcomment %}
+</script>
 
-</script> 
+<script>
+$(document).ready(function(){
+
+  $("#select1").select2({
+  });
+  $("#select2").select2({
+
+  });
+});
+</script>
+
   </head>
-{% comment %} '[value="'+this.value+'"]' {% endcomment %}
-<center>
-
-    <select id="select1">
+  <center>
+  <select id="select1" style="width:300px">
     <option disabled selected="true">--select states--</option>
-    {% for state in states %}
-    <option value="{{state.state}}">{{state.state}}</option>
+    {% for i in stateObj %}
+    <option value="{{i}}">{{i.state}}</option>
     {% endfor %}
   </select>
 
-  <select id="select2">
+
+  <select id="select2" style="width:300px">
     <option disabled selected="true">--select district--</option>
-    {% for district in districts %}
-    <option value="{{district.state}}">{{district.district}}</option>
+    {% for i in data1 %}
+    <option value="{{i.0}}">{{i.1}}</option>
     {% endfor %}
   </select>
- 
-</center>
+
+
+<h1></h1>
+<input class="search" type="submit" value="search"/>
+  
+  </center>
 </html>
+
+
+
+
+
+
+
+
+
