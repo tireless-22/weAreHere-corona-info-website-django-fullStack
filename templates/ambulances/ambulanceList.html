@@ -4,7 +4,7 @@
 
 {% csrf_token %}
 
-<div class="mapouter" align="right"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="{{data.5}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">how to add google maps to a website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+
 
 <table class="content-table">
   <thead>
@@ -39,6 +39,9 @@
     
   </tbody>
 </table>
+
+
+<center>
 {% for rate in rates%}
 <div class="container">
 <label for="file">{{rate.0}}</label><span class="fa fa-star checked"></span>
@@ -61,6 +64,7 @@
 <br>
 {{rows.2}}
 {% endfor %}
+</center>
 
 </body>
 </html>
