@@ -1,5 +1,6 @@
 .content-table {
-    width:60%;
+    float:left;
+    width:80%;
     border-collapse: collapse;
     margin: 25px 20%;
     font-size: 0.9em;

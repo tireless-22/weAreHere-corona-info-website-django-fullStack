@@ -6,6 +6,8 @@ from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.views import LogoutView
 from rest_framework import routers
+from django.conf.urls.static import static
+
 
 router = routers.DefaultRouter()
 router.register(r'state',views.StateViewSet)
@@ -27,7 +29,7 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('admin/', admin.site.urls),
    
-    
+    path('getValues/',views.getValues),
     url(r'services/(?P<id1>[A-Za-z0-9- ]+)/(?P<id2>[A-Za-z0-9- ]+)$',views.services, name='services'),
 
     url(r'hospital_list/(?P<name1>[A-Za-z0-9- ]+)/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.hospital_list,name='hosp_list'),
@@ -40,9 +42,8 @@ urlpatterns = [
     url(r'all_ambulance_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_ambulance_list,name='all_ambulance_list'),
     url(r'all_oxygen_cylinders_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_oxygen_cylinders_list,name='all_oxygen_cylinders_list'),
     url(r'all_medical_sotres_list/(?P<st>[A-Za-z0-9- ]+)/(?P<dt>[A-Za-z0-9- ]+)$', views.all_medical_sotres_list,name='all_medical_sotres_list'),
-    path('ddl/', views.ddl, name='ddl'),
-   
+    path('get-districts-ajax/', views.get_districts_ajax, name="get_districts_ajax"),
 
-]
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 

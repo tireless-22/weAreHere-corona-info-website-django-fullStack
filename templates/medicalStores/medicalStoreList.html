@@ -33,12 +33,24 @@
   </tr>
     <tr>
     <td>Navigation</td>
-    <td>{{data.5}}</td>
+    <td><a  href={{data.5}}/>click here</a></td>
   </tr>
 
  
   </tbody>
 </table>
+{% for rate in rates%}
+<div class="container">
+<label for="file">{{rate.0}}</label><span class="fa fa-star checked"></span>
+<div class="progress" style="width: 80%" !important>
+
+    <div id="file" class="progress-bar" role="progressbar" aria-valuenow=70 aria-valuemin="0" aria-valuemax="100" style="width:{{rate.1}}%">
+      <span class="sr-only">70% Complete</span>
+    </div>
+  </div>
+</div>
+  <br><br>
+{% endfor %}
 {% for rows in reviews %}
 {{rows.0}}
 <br>
