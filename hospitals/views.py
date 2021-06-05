@@ -92,7 +92,8 @@ def services(request,id1,id2):
   
  for i in ambu:
   w = {
-  'vehicle_no_of_the_ambulance' : i.vehicle_no_of_the_ambulance
+  'vehicle_no_of_the_ambulance' : i.vehicle_no_of_the_ambulance,
+  'amb_img' : i.amb_img
   }
   ambulances_list.append(w)
   
@@ -106,7 +107,8 @@ def services(request,id1,id2):
   
  for i in medicine:
   w = {
-  'name_of_the_medical_store' : i.name_of_the_medical_store
+  'name_of_the_medical_store' : i.name_of_the_medical_store,
+  'med_img' : i.med_img
   }
   medical_store_list.append(w)
 

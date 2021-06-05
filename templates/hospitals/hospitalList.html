@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 {% extends 'base2.html' %}
 {% block content %}
 <br><br><br>
@@ -5,69 +7,46 @@
 {% csrf_token %}
 
 {% comment %} <div class="mapouter" align="right" style="float: right;"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="{{data.8}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">how to add google maps to a website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div> {% endcomment %}
-
+<head>
 <style>
 
 .ratesAndReviews{
+  clear:both;
   float:left;
   margin-left:25px;
   margin-bottom:25px;
+  width:25%;
 }
 
 
 img{
   float:left;
-  width:45%;
+  width:25%;
   margin:25px;
+  height:250px;
+}
+fieldset {
+  background-color: #eeeeee;
+  font-size:25px;
+  float:right;
+  width:70%;
+
+
+
+}
+
+legend {
+  background-color: #fffc00;
+ font-size:25px;
+  padding: 5px 10px;
 }
 
 
 
 
-.content-table {
-    float:right;
-    width:45%;
-    border-collapse: collapse;
-    margin:25px;
-    font-size: 0.9em;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-.content-table thead tr {
-    background-color: #FFFC00;
-    color: #000;
-    text-align: center;
-    font-weight: bold;
-}
-
-.content-table th,
-.content-table td {
-    padding: 12px 15px;
-}
-
-.content-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-    text-align: center;
-}
-
-.content-table tbody tr:nth-of-type(even) {
-    background-color: #999;
-    text-align: center;
-}
-
-/* LAST LINE */
-.content-table tbody tr:last-of-type {
-    border-bottom: 4px solid #FFFC00;
-}
 
 
-/* EVEN ROW */
-.content-table tbody tr.active-row {
-    font-weight: bold;
-    color: #FFF;
-}
+
 @media screen and (max-width:1080px) {
 
   img{
@@ -75,88 +54,69 @@ img{
     margin-left:2.5%;
     margin-right:2.5%;
   }
-  
-    .content-table {
-        width:95%;
-        margin-left:2.5%;
-        margin-right:2.5%;
-        border-collapse: collapse;
-      
-        font-size: 0.9em;
-      
-        border-radius: 5px 5px 0 0;
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    }
+  fieldset {
+width:95%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+
+
+}
+
+
 }
 
 </style>
+</head>
+<body>
 <center><h1>{{data.0}}</h1></center>
 
 
-<img src="/media/{{data.9}}" alt="/media/images.PNG" style="height:300px;">
-
-
-
-
-<table class="content-table">
-  <thead>
-    <tr>
-    <th>Hospital Name</th>
-    <th>{{data.0}}</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-    <td>ICU Beds</td>
-    <td>{{data.1}}</td>
-  </tr>
-
-    <tr>
-    <td>ICU Ventilator Beds</td>
-    <td>{{data.2}}</td>
-  </tr>
-    <tr>
-    <td>Oxygen Beds</td>
-    <td>{{data.3}}</td>
-  </tr>
-  <tr>
-    <td>Normal Beds</td>
-    <td>{{data.4}}</td>
-  </tr>
-  <tr>
-    <td>Contact Info</td>
-    <td>{{data.5}}</td>
-  </tr>
-
-   <tr>
-    <td>Pincode</td>
-    <td>{{data.6}}</td>
-  </tr>
-    <tr>
-    <td>Address</td>
-    <td>{{data.7}}</td>
-  </tr>
- </tr>
-    <tr>
-    <td>Gmap Link</td>
-    <td><a  href={{data.8}}/>click here</a></td>
-  </tr>
-  </tbody>
-
-</table>
+<img src="/media/{{data.9}}" alt="/media/images.PNG">
 
 
 
 
 
-<br><br>
+
+
+
+
+
+
+<fieldset class="border p-4">
+   <legend  class="w-auto">Beds Info</legend>
+ 
+   ICU Beds : {{data.1}}<br>
+  ICU Ventilator Beds : {{data.2}}<br>
+  Oxygen Beds : {{data.3}}<br>
+  Normal Beds : {{data.4}}<br>
+  
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br>
+
+
+
+
+
 
 <center>
 <div class ="ratesAndReviews">
 {% for rate in rates%}
 <div class="container">
 <label for="file">{{rate.0}}</label><span class="fa fa-star checked"></span>
+
+
 <div class="progress" style="width: 80%" !important>
 
     <div id="file" class="progress-bar" role="progressbar" aria-valuenow=70 aria-valuemin="0" aria-valuemax="100" style="width:{{rate.1}}%">
@@ -164,6 +124,8 @@ img{
     </div>
   </div>
 </div>
+
+
   <br><br>
 {% endfor %}
 
@@ -184,6 +146,19 @@ img{
 <br>
 <br>
 
+<fieldset class="border p-4">
+   <legend class="w-auto">Hospital Details</legend>
+
+   Contact Info: {{data.5}}<br>
+  Pincode : {{data.6}}<br>
+  Address: {{data.7}}<br>
+ Gmap Link: {{data.8}}<br>
+
+</fieldset>
+
+
+
 </body>
-</html>
+
 {% endblock %}
+</html>
