@@ -2,25 +2,7 @@
 
 body { font-family: sans-serif; }
 
-.see{
-  float: right;
-  display: block;
-  color: blue;
-  text-align: center;
-  padding: 0px 25px;
-  text-decoration: none;
-  text-decoration: underline;
-  font-size: 15px;
-}
-.headings{
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 0px 12px;
-  text-decoration: none;
-  font-size: 22px;
-}
+
 
 
 
@@ -32,7 +14,7 @@ body { font-family: sans-serif; }
 
 .carousel-cell {
   width: 22%;
-  height: 200px;
+  height: 180px;
   margin-right: 10px;
   background: #fffc00;
   border-radius: 5px;
@@ -44,7 +26,7 @@ body { font-family: sans-serif; }
  @media screen and (max-width:1080px) {
 	.carousel-cell {
   width: 33%;
-  height: 200px;
+  height: 180px;
   margin-right: 10px;
   background: #fffc00;
   border-radius: 5px;
@@ -55,7 +37,7 @@ body { font-family: sans-serif; }
 @media screen and (max-width:720px) {
 	.carousel-cell {
   width: 50%;
-  height: 150px;
+  height: 180px;
   margin-right: 10px;
   background: #fffc00;
   border-radius: 5px;

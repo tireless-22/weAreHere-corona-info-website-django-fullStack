@@ -4,7 +4,7 @@
 
 {% csrf_token %}
 
-<div class="mapouter" align="right"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="{{data.5}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">how to add google maps to a website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+
 
 <table class="content-table">
   <thead>
@@ -34,12 +34,26 @@
   </tr>
     <tr>
     <td>Navigation</td>
-    <td>{{data.5}}</td>
+    <td><a  href={{data.5}}/>click here</a></td>
   </tr>
     
   </tbody>
 </table>
 
+
+<center>
+{% for rate in rates%}
+<div class="container">
+<label for="file">{{rate.0}}</label><span class="fa fa-star checked"></span>
+<div class="progress" style="width: 80%" !important>
+
+    <div id="file" class="progress-bar" role="progressbar" aria-valuenow=70 aria-valuemin="0" aria-valuemax="100" style="width:{{rate.1}}%">
+      <span class="sr-only">70% Complete</span>
+    </div>
+  </div>
+</div>
+  <br><br>
+{% endfor %}
 {% for rows in reviews %}
 {{rows.0}}
 <br>
@@ -50,6 +64,7 @@
 <br>
 {{rows.2}}
 {% endfor %}
+</center>
 
 </body>
 </html>

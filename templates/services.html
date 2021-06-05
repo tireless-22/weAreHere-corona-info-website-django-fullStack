@@ -5,11 +5,34 @@
 {% if hosp_list %}
 <div>
  <p class="headings">Hospitals</p>
-  <a target="blank" href="{% url 'all_hospitals_list' st=lst.0 dt=lst.1 %}"> 
+  <a href="{% url 'all_hospitals_list' st=lst.0 dt=lst.1 %}"> 
   <p class="see">SeeAll</p></a>
   
   <div>
+<style>
+.see{
+  float: right;
+  display: block;
+  color: black;
+  text-align: center;
+  margin-right:12px;
+  text-decoration: none;
   
+  font-size: 15px;
+}
+.headings{
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  margin-left:12px;
+  
+  text-decoration: none;
+  font-size: 20px;
+} 
+
+
+</style> 
 
 
 </div>
@@ -20,7 +43,7 @@
   		<div class="carousel-cell">
       <center><h6>{{i.name_of_hospital}}</h6></center>
   		 <a href="{% url 'hosp_list' name1=i.name_of_hospital st=lst.0 dt=lst.1 %}"> 
-      <img src="https://source.unsplash.com/random" style="width:100%;height:300px;">
+      <img src="/media/{{i.hosp_img}}" style="width:100%;height:180px;">
       </a>   
   		</div> 
       {% endfor %}
@@ -31,7 +54,7 @@
 {% if ambulances_list %}
 </div>
 <p class="headings">Ambulances</p>
-<a target="blank" href="{% url 'all_ambulance_list' st=lst.0 dt=lst.1 %}"> 
+<a  href="{% url 'all_ambulance_list' st=lst.0 dt=lst.1 %}"> 
   <p class="see">SeeAll</p></a>
  
 <br><br>
@@ -44,17 +67,17 @@
 		<div class="carousel-cell">
     <center><h6>{{i.vehicle_no_of_the_ambulance}}</h6></center>
 		<a href="{% url 'ambulance_list' name1=i.vehicle_no_of_the_ambulance st=lst.0 dt=lst.1 %}">
-    <img src="https://source.unsplash.com/random" style="width:100%;height:300px;">
+    <img src="/media/{{i.amb_img}}" style="width:100%;height:180px;">
     </a>   
 		</div> 
     {% endfor %}
     
 </div>
 {% endif %}
-<br>
+
 {% if oxygen_cylinder_list %}
 <p class="headings">Oxygen Cylinders</p>
-<a target="blank" href="{% url 'all_oxygen_cylinders_list' st=lst.0 dt=lst.1 %}"> 
+<a  href="{% url 'all_oxygen_cylinders_list' st=lst.0 dt=lst.1 %}"> 
   <p class="see">SeeAll</p></a>
  
 <br><br>
@@ -67,7 +90,7 @@
 		<div class="carousel-cell">
     <center><h6>{{i.name_of_the_oxygen_dealerame}}</h6></center>
 		<a href="{% url 'oxygen_cylinder_list' name1=i.name_of_the_oxygen_dealerame st=lst.0 dt=lst.1 %}">
-    <img src="https://source.unsplash.com/random" style="width:100%;height:300px;">
+    <img src="https://source.unsplash.com/random" style="width:100%;height:180px;">
     </a>   
 		</div> 
     {% endfor %}
@@ -77,7 +100,7 @@
 <br>
 {% if medical_store_list %}
 <p class="headings">Medical Stores</p>
-<a target="blank" href="{% url 'all_medical_sotres_list' st=lst.0 dt=lst.1 %}"> 
+<a  href="{% url 'all_medical_sotres_list' st=lst.0 dt=lst.1 %}"> 
   <p class="see">SeeAll</p></a>
  
 <br><br>
@@ -91,7 +114,7 @@
 		<div class="carousel-cell">
     <center><h6>{{i.name_of_the_medical_store}}</h6></center>
 		<a href="{% url 'medical_store_list' name1=i.name_of_the_medical_store st=lst.0 dt=lst.1 %}">
-    <img src="https://source.unsplash.com/random" style="width:100%;height:300px;">
+    <img src="/media/{{i.med_img}}" style="width:100%;height:180px;">
     </a>   
 		</div> 
     {% endfor %}

@@ -4,12 +4,18 @@ from django.db.models.deletion import CASCADE
 
 
 class State(models.Model):
-	state = models.CharField(max_length=50,null=False)
+    state = models.CharField(max_length=30,null=False)\
+
+    def __str__(self):
+        return self.state
 
 class District(models.Model):
-	state = models.ForeignKey(State,on_delete=CASCADE)
-	district = models.CharField(max_length=50,null=False)
+    state = models.ForeignKey(State,on_delete=CASCADE)
+    district = models.CharField(max_length=50,null=False)
+    dist_img = models.ImageField(upload_to='district/images', default='d.jpg')
 
+    def __str__(self):
+        return self.district
 class Hospital(models.Model):
     name_of_hospital = models.CharField(max_length=50, null=False)
     district = models.ForeignKey(District,on_delete=CASCADE, related_name='dist')
@@ -21,7 +27,10 @@ class Hospital(models.Model):
     total_o2_beds = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     total_normal_beds = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     contact_number_of_the_hospital= models.BigIntegerField(default=0, validators=[MinValueValidator(0)])
+    hosp_img = models.ImageField(upload_to='hospital/images', default='hosp.png')
 
+    def __str__(self):
+        return self.name_of_hospital
 
 
 class Ambulances(models.Model):
@@ -32,6 +41,9 @@ class Ambulances(models.Model):
     pincode = models.IntegerField(null=False)
     address = models.CharField(max_length=100, null=False)
     gmap_link = models.CharField(max_length=2048, null=False)
+    amb_img = models.ImageField(default='ambulance.png')
+    def __str__(self):
+        return self.vehicle_no_of_the_ambulance
 
 class oxygen_cylinders(models.Model):
     district = models.ForeignKey(District,on_delete=CASCADE)
@@ -41,6 +53,9 @@ class oxygen_cylinders(models.Model):
     address = models.CharField(max_length=100, null=False)
     gmap_link = models.CharField(max_length=2048, null=False)
 
+    def __str__(self):
+        return self.name_of_the_oxygen_dealer
+
 class Medicines(models.Model):
     district = models.ForeignKey(District,on_delete=CASCADE)
     name_of_the_medical_store= models.CharField(max_length=30,null=False)
@@ -49,6 +64,10 @@ class Medicines(models.Model):
     pincode=models.IntegerField(null=False)
     address=models.CharField(max_length=100, null=False)
     gmap_link=models.CharField(max_length=2048, null=False)
+    med_img = models.ImageField(default='med.png')
+
+    def __str__(self):
+        return self.name_of_the_medical_store
 
 class History(models.Model):
     hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE)
@@ -70,14 +89,23 @@ class Reviews_hospital(models.Model):
     rating = models.IntegerField(validators=[MaxValueValidator(5)])
     feedback = models.TextField(max_length=250)
 
+    def __str__(self):
+        return self.username
+
 class Reviews_ambulance(models.Model):
     ambulance = models.ForeignKey(Ambulances,on_delete=CASCADE)
     username = models.CharField(max_length=20)
     rating = models.IntegerField(validators=[MaxValueValidator(5)])
     feedback = models.TextField(max_length=250)
 
+    def __str__(self):
+        return self.username
+
 class Reviews_medical_store(models.Model):
     medical_store = models.ForeignKey(Medicines,on_delete=CASCADE)
     username = models.CharField(max_length=20)
     rating = models.IntegerField(validators=[MaxValueValidator(5)])
     feedback = models.TextField(max_length=250)
+
+    def __str__(self):
+        return self.username

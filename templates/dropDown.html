@@ -1,51 +1,56 @@
-<!DOCTYPE html>
-<h4>drop down list</h4>
+<html>
 <head>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
-  $(document).ready(function()
-  {
-    var $select1=$('#select1'),
-        $select2=$('#select2'),
-      
-
-        $options=$select2.find('option');
- 
-        
-        $select1.on('change',function(){
-          console.log("hi")
-          console.log($options)
-          console.log()
-
-
-
-          $select2.html($options.filter('[value="'+this.value+'"]'));
-          
-        }).trigger('change');
-  }
-  );
-  {% comment %} .filter('[value="'+this.value+'"]') {% endcomment %}
-
-</script> 
-  </head>
-{% comment %} '[value="'+this.value+'"]' {% endcomment %}
-<center>
-
-    <select id="select1">
-    <option disabled selected="true">--select states--</option>
-    {% for state in states %}
-    <option value="{{state.state}}">{{state.state}}</option>
-    {% endfor %}
-  </select>
-
-  <select id="select2">
-    <option disabled selected="true">--select district--</option>
-    {% for district in districts %}
-    <option value="{{district.state}}">{{district.district}}</option>
-    {% endfor %}
-  </select>
- 
-</center>
+$(document).ready(function(){
+    $(".question-subject").change(function () {
+        const subjectId = $(this).val();  // get the selected subject ID from the HTML dropdown list 
+        $.ajax({                       // initialize an AJAX request
+            type: "POST",
+            url: '{% url "get_districts_ajax" %}',
+            data: {
+                'subject_id': subjectId,       // add the country id to the POST parameters
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (data) {  // `data` is from `get_topics_ajax` view function
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (data) {
+                    data
+                    html_data += '<option value="'+data.id+ '">'+data.district+'</option>'
+                    
+                });
+                $("#question-topic").html(html_data); // replace the contents of the topic input with the data that came from the server
+            }
+        });
+    });
+});
+</script>
+{% endblock javascript %}
+</head>
+<body>
+  {% csrf_token %}
+<form action="/getValues/" method="POST">
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="inputStatus">Subject</label>
+    <select class="question-subject" class="form-control-sm custom-select" name="key">
+      <option selected disabled>Choose a subject</option>
+      {% for state in data%}
+      <option value="{{state.0}}">{{state.1}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="inputStatus">Topic</label>
+    <select id="question-topic" class="form-control-sm custom-select" name="j">
+      <option selected disabled>Choose a topic</option>
+    </select>
+  </div>
+</div>
+<button type='submit'>SUBMIT</button>
+</form>
+</body>
 </html>

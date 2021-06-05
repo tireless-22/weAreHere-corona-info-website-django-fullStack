@@ -1,71 +1,277 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+{% extends 'base2.html' %}
 {% block content %}
 <br><br><br>
 
 {% csrf_token %}
 
-<div class="mapouter" align="right"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="{{data.8}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">how to add google maps to a website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+{% comment %} <div class="mapouter" align="right" style="float: right;"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="{{data.8}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">how to add google maps to a website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div> {% endcomment %}
+<head>
+<style>
 
-<table class="content-table">
-  <thead>
-    <tr>
-    <th>Hospital Name</th>
-    <th>{{data.0}}</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-    <td>ICU Beds</td>
-    <td>{{data.1}}</td>
-  </tr>
+.reviewBox{
+  max-width: 800px; 
+  margin:auto;
+  background-color:red;
+}
 
-    <tr>
-    <td>ICU Ventilator Beds</td>
-    <td>{{data.2}}</td>
-  </tr>
-    <tr>
-    <td>Oxygen Beds</td>
-    <td>{{data.3}}</td>
-  </tr>
-  <tr>
-    <td>Normal Beds</td>
-    <td>{{data.4}}</td>
-  </tr>
-  <tr>
-    <td>Contact Info</td>
-    <td>{{data.5}}</td>
-  </tr>
 
-   <tr>
-    <td>Pincode</td>
-    <td>{{data.6}}</td>
-  </tr>
-    <tr>
-    <td>Address</td>
-    <td>{{data.7}}</td>
-  </tr>
+.progressbarr{
+  clear:both;
+  font-family: Arial;
+  margin: 0 auto; 
+  max-width: 800px; 
+  padding: 20px;
+}
 
-  </tbody>
+.ratesAndReviews{
+  clear:both;
+  float:left;
+  margin-left:25px;
+  margin-bottom:25px;
+  width:25%;
+}
 
-</table>
+.fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: orange;
+}
 
 
 
+img{
+  float:left;
+  width:45%;
+  margin-left:2.5%;
+  height:470px;
+}
+fieldset {
+  background-color: #eeeeee;
+  font-size:21px;
+  float:right;
+  margin-bottom:10px;
+  margin-left:2.5%;
+  margin-right:2.5%;
+  width:47.5%;
 
+
+
+}
+
+legend {
+  background-color: #fffc00;
+ font-size:25px;
+  padding: 5px 10px;
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+
+.side {
+  clear:both;
+  float: left;
+  width: 10%;
+  margin-top:10px;
+}
+
+.middle {
+  margin-top:12px;
+  float: left;
+  width: 90%;
+}
+
+
+.right {
+  text-align: right;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+.bar-5 { height: 25px; background-color: #04AA6D;}
+.bar-4 { height:25px; background-color: #2196F3;}
+.bar-3 { height:25px; background-color: #00bcd4;}
+.bar-2 { height:25px; background-color: #ff9800;}
+.bar-1 { height:25px; background-color: #f44336;}
+
+
+@media (max-width: 400px) {
+  .side, .middle {
+    width: 100%;
+  }
+  .right {
+    display: none;
+  }
+}
+
+
+
+@media screen and (max-width:1080px) {
+
+  img{
+    width:95%;
+    height:350px;
+    margin-left:2.5%;
+    margin-right:2.5%;
+  }
+  fieldset {
+width:95%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+
+
+}
+
+
+}
+
+</style>
+</head>
+<body>
+<center><h1>{{data.0}}</h1></center>
+
+<br>
+
+<img src="/media/{{data.9}}" alt="/media/images.PNG">
+
+
+
+
+{% comment %} <h3>Overall Ratings<h3> {% endcomment %}
+
+<fieldset class="border p-4">
+   <legend  class="w-auto">Beds Info</legend>
+ 
+   ICU Beds : {{data.1}}<br>
+  ICU Ventilator Beds : {{data.2}}<br>
+  Oxygen Beds : {{data.3}}<br>
+  Normal Beds : {{data.4}}<br>
+  
+</fieldset>
 
 <br><br>
+<fieldset class="border p-4">
+   <legend class="w-auto">Hospital Details</legend>
+
+   Contact Info: {{data.5}}<br>
+  Pincode : {{data.6}}<br>
+  Address: {{data.7}}<br>
+ Gmap Link: {{data.8}}<br>
+
+</fieldset>
+
+<br><br><br>
+
+<center style="clear:both;">
+
+<h2>Overall Ratings</h2>
+</center>
+
+<div class="progressbarr">
+
+<div class="row">
+
+
+  <div class="side">
+    <div>5 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-5" style="width:{{rates.4}}%;"></div>
+    </div>
+  </div> 
+
+ 
+  <div class="side">
+    <div>4 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-4" style="width:{{rates.3}}%;"></div>
+    </div>
+  </div>
+  
+ 
+  <div class="side">
+    <div>3 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-3" style="width:{{rates.2}}%;"></div>
+    </div>
+  </div>
+   
+  <div class="side">
+    <div>2 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-2" style="width:{{rates.1}}%;"></div>
+    </div>
+  </div>  
+  
+  <div class="side">
+    <div>1 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-1" style="width:{{rates.0}}%;"></div>
+    </div>
+  </div>
+
+  
+</div>
+</div>
+
+
 
 {% for rows in reviews %}
-{{rows.0}}
-<br>
+
+
+<div class ="reviewBox">
+
+<h3>{{rows.0}}</h3>
+
+<div class="stars" style="float:left;">
 {% for i in rows.1 %}
-<span class="fa fa-star checked" style="color: orange"></span>
+<span class="fa fa-star checked"></span>
+{% endfor %}
+</div>
+
+<p style= "clear:both; text-align:justify; text-align: justify;">{{rows.2}}</p>
+
+</div>
 {% endfor %}
 
+
+
+
+
 <br>
-{{rows.2}}
-{% endfor %}
+<br>
 
 </body>
-</html>
+
 {% endblock %}
+</html>

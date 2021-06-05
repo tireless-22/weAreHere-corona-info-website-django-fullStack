@@ -1,7 +1,8 @@
 .content-table {
-    width:60%;
+    float:left;
+    width:80%;
     border-collapse: collapse;
-    margin: 25px 20%;
+    margin: 25px 10%;
     font-size: 0.9em;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
@@ -45,7 +46,7 @@
     .content-table {
         width:100%;
         border-collapse: collapse;
-        margin: 25px 0;
+        margin: 25px 0px;
         font-size: 0.9em;
         min-width: 400px;
         border-radius: 5px 5px 0 0;

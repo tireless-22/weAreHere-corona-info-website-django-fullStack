@@ -1,6 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
 <br><br><br>
+<head>
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+    $(".question-subject").change(function () {
+        const subjectId = $(this).val();  // get the selected subject ID from the HTML dropdown list 
+        $.ajax({                       // initialize an AJAX request
+            type: "POST",
+            url: '{% url "get_districts_ajax" %}',
+            data: {
+                'subject_id': subjectId,       // add the country id to the POST parameters
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (data) {  // `data` is from `get_topics_ajax` view function
+                let html_data = '<option value="" selected disabled>Districts</option>';
+                data.forEach(function (data) {
+                    data
+                    html_data += '<option value="'+data.id+ '">'+data.district+'</option>'
+                    
+                });
+                $("#question-topic").html(html_data); // replace the contents of the topic input with the data that came from the server
+            }
+        });
+    });
+});
+</script>
+{% endblock javascript %}
+</head>
+
+<body>
+	  {% csrf_token %}
+<form action="/getValues/" method="POST">
+
+<div>
+
+  <div class="form-group"  style=" display:inline-block;margin-right:12px;margin-left:12px;">
+    <select class="question-subject"   name="key">
+      <option selected disabled>Select a State</option>
+      {% for state in data%}
+      <option value="{{state.0}}">{{state.1}}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+
+
+
+  <div class="form-group"  style="display:inline-block;margin-right:10px;  ">
+
+    <select id="question-topic"  name="j">
+      <option selected disabled>Select a District</option>
+    </select>
+
+  </div>
+
+<br>
+<button type='submit' style="width:80px; height:25px;margin-left:12px; border-style:none; background-color:#ccc" >Submit</button>
+
+</div>
+
+</form>
+
+
+
 {% csrf_token %}
 {% for key,value in w.items %}
 {% if value %}
@@ -9,10 +74,10 @@
 <div class="carousel"
   data-flickity='{ "groupCells": true }'>
   {% for j in value %}
-		<div class="carousel-cell">
-    <center><h6>{{j}}</h6></center>
-		<a href="{% url 'services' id1=key id2=j %}" >
-    <img src="https://source.unsplash.com/random" style="width:100%;height:300px;">
+		<div class="carousel-cell"> 
+    <center><h6>{{j.0}}</h6></center>
+		<a href="{% url 'services' id1=key id2=j.0 %}" >
+    <img src="/media/{{j.1}}" style="width:100%;height:180px;">
     </a>   
 		</div> 
     {% endfor %}
@@ -24,3 +89,4 @@
 
 {% endblock %}
 
+</body>
