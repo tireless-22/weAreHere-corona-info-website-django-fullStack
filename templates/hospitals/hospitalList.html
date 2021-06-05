@@ -10,6 +10,21 @@
 <head>
 <style>
 
+.reviewBox{
+  max-width: 800px; 
+  margin:auto;
+  background-color:red;
+}
+
+
+.progressbarr{
+  clear:both;
+  font-family: Arial;
+  margin: 0 auto; 
+  max-width: 800px; 
+  padding: 20px;
+}
+
 .ratesAndReviews{
   clear:both;
   float:left;
@@ -18,18 +33,30 @@
   width:25%;
 }
 
+.fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: orange;
+}
+
+
 
 img{
   float:left;
-  width:25%;
-  margin:25px;
-  height:250px;
+  width:45%;
+  margin-left:2.5%;
+  height:470px;
 }
 fieldset {
   background-color: #eeeeee;
-  font-size:25px;
+  font-size:21px;
   float:right;
-  width:70%;
+  margin-bottom:10px;
+  margin-left:2.5%;
+  margin-right:2.5%;
+  width:47.5%;
 
 
 
@@ -43,7 +70,60 @@ legend {
 
 
 
+* {
+  box-sizing: border-box;
+}
 
+
+
+
+.side {
+  clear:both;
+  float: left;
+  width: 10%;
+  margin-top:10px;
+}
+
+.middle {
+  margin-top:12px;
+  float: left;
+  width: 90%;
+}
+
+
+.right {
+  text-align: right;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+.bar-5 { height: 25px; background-color: #04AA6D;}
+.bar-4 { height:25px; background-color: #2196F3;}
+.bar-3 { height:25px; background-color: #00bcd4;}
+.bar-2 { height:25px; background-color: #ff9800;}
+.bar-1 { height:25px; background-color: #f44336;}
+
+
+@media (max-width: 400px) {
+  .side, .middle {
+    width: 100%;
+  }
+  .right {
+    display: none;
+  }
+}
 
 
 
@@ -51,6 +131,7 @@ legend {
 
   img{
     width:95%;
+    height:350px;
     margin-left:2.5%;
     margin-right:2.5%;
   }
@@ -70,18 +151,14 @@ width:95%;
 <body>
 <center><h1>{{data.0}}</h1></center>
 
+<br>
 
 <img src="/media/{{data.9}}" alt="/media/images.PNG">
 
 
 
 
-
-
-
-
-
-
+{% comment %} <h3>Overall Ratings<h3> {% endcomment %}
 
 <fieldset class="border p-4">
    <legend  class="w-auto">Beds Info</legend>
@@ -93,59 +170,7 @@ width:95%;
   
 </fieldset>
 
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br>
-
-
-
-
-
-
-<center>
-<div class ="ratesAndReviews">
-{% for rate in rates%}
-<div class="container">
-<label for="file">{{rate.0}}</label><span class="fa fa-star checked"></span>
-
-
-<div class="progress" style="width: 80%" !important>
-
-    <div id="file" class="progress-bar" role="progressbar" aria-valuenow=70 aria-valuemin="0" aria-valuemax="100" style="width:{{rate.1}}%">
-      <span class="sr-only">70% Complete</span>
-    </div>
-  </div>
-</div>
-
-
-  <br><br>
-{% endfor %}
-
-{% for rows in reviews %}
-{{rows.0}}
-<br>
-{% for i in rows.1 %}
-<span class="fa fa-star checked" style="color: orange"></span>
-{% endfor %}
-
-<br>
-{{rows.2}}
-{% endfor %}
-
-</div>
-
-</center>
-<br>
-<br>
-
+<br><br>
 <fieldset class="border p-4">
    <legend class="w-auto">Hospital Details</legend>
 
@@ -156,7 +181,95 @@ width:95%;
 
 </fieldset>
 
+<br><br><br>
 
+<center style="clear:both;">
+
+<h2>Overall Ratings</h2>
+</center>
+
+<div class="progressbarr">
+
+<div class="row">
+
+
+  <div class="side">
+    <div>5 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-5" style="width:{{rates.4}}%;"></div>
+    </div>
+  </div> 
+
+ 
+  <div class="side">
+    <div>4 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-4" style="width:{{rates.3}}%;"></div>
+    </div>
+  </div>
+  
+ 
+  <div class="side">
+    <div>3 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-3" style="width:{{rates.2}}%;"></div>
+    </div>
+  </div>
+   
+  <div class="side">
+    <div>2 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-2" style="width:{{rates.1}}%;"></div>
+    </div>
+  </div>  
+  
+  <div class="side">
+    <div>1 star</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-1" style="width:{{rates.0}}%;"></div>
+    </div>
+  </div>
+
+  
+</div>
+</div>
+
+
+
+{% for rows in reviews %}
+
+
+<div class ="reviewBox">
+
+<h3>{{rows.0}}</h3>
+
+<div class="stars" style="float:left;">
+{% for i in rows.1 %}
+<span class="fa fa-star checked"></span>
+{% endfor %}
+</div>
+
+<p style= "clear:both; text-align:justify; text-align: justify;">{{rows.2}}</p>
+
+</div>
+{% endfor %}
+
+
+
+
+
+<br>
+<br>
 
 </body>
 

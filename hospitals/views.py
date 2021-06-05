@@ -226,6 +226,7 @@ def hospital_list(request,name1,st,dt):
    w.append(i.feedback)
 
    reviews.append(w)
+   print("reviews",reviews)
   five_rating = Reviews_hospital.objects.filter(hospital_id=hosp[0],rating=5)
   four_rating = Reviews_hospital.objects.filter(hospital_id=hosp[0],rating=4)
   three_rating = Reviews_hospital.objects.filter(hospital_id=hosp[0],rating=3)
@@ -237,11 +238,13 @@ def hospital_list(request,name1,st,dt):
   three = (len(three_rating)*100//total)
   four = (len(four_rating)*100//total)
   five = (len(five_rating)*100//total)
-  rates.append([1,one])
-  rates.append([2,two])
-  rates.append([3,three]) 
-  rates.append([4,four])
-  rates.append([5,five])
+  rates.append(one)
+  rates.append(two)
+  rates.append(three) 
+  rates.append(four)
+  rates.append(five)
+
+  print("rates",rates)
   
  else:
    w = []
