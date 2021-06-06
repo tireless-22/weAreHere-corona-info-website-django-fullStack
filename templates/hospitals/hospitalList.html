@@ -10,10 +10,20 @@
 <head>
 <style>
 
+.comContainer{
+  clear:both;
+  margin: 0 auto; 
+  max-width: 1200px; 
+  padding: 20px;
+  background-color:#fffc00;
+
+}
+
 .reviewBox{
-  max-width: 800px; 
+  max-width: 1100px; 
   margin:auto;
-  background-color:red;
+  padding:10px; 
+  background-color:#eeeeee;
 }
 
 
@@ -21,7 +31,7 @@
   clear:both;
   font-family: Arial;
   margin: 0 auto; 
-  max-width: 800px; 
+  max-width: 1200px; 
   padding: 20px;
 }
 
@@ -48,6 +58,7 @@ img{
   width:45%;
   margin-left:2.5%;
   height:470px;
+ 
 }
 fieldset {
   background-color: #eeeeee;
@@ -136,10 +147,27 @@ legend {
     margin-right:2.5%;
   }
   fieldset {
-width:95%;
+    width:95%;
     margin-left:2.5%;
     margin-right:2.5%;
 
+
+}
+.progressbarr{
+   width:95%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+
+}
+.comContainer{
+   width:95%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+
+
+}
+.reviewBox{
+     
 
 }
 
@@ -183,6 +211,9 @@ width:95%;
 
 <br><br><br>
 
+
+
+{% if rates %}
 <center style="clear:both;">
 
 <h2>Overall Ratings</h2>
@@ -244,6 +275,17 @@ width:95%;
 </div>
 </div>
 
+{% endif %}
+
+<br>
+
+<div class="comContainer">
+
+<center style="clear:both;">
+
+<h2>Reviews</h2>
+</center>
+
 
 
 {% for rows in reviews %}
@@ -262,8 +304,9 @@ width:95%;
 <p style= "clear:both; text-align:justify; text-align: justify;">{{rows.2}}</p>
 
 </div>
+<br>
 {% endfor %}
-
+</div>
 
 
 
